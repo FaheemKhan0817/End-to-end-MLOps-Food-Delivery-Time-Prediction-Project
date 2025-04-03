@@ -1,0 +1,19 @@
+Metadata-Version: 2.2
+Name: Food-Delivery-Time-Prediction
+Version: 0.1
+Summary: End to end MLOps Project for Food Delivery Time Prediction
+Author: Faheem Khan
+Author-email: faheemthakur23@gmail.com
+Requires-Dist: pandas
+Requires-Dist: numpy
+Requires-Dist: setuptools
+Requires-Dist: scikit-learn
+Requires-Dist: kaggle
+Requires-Dist: redis
+Requires-Dist: geopy
+Requires-Dist: xgboost
+Requires-Dist: comet_ml
+Dynamic: author
+Dynamic: author-email
+Dynamic: requires-dist
+Dynamic: summary
