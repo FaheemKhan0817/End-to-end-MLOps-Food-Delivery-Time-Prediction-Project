@@ -6,7 +6,7 @@ on:
       - main
 
 env:
-  IMAGE_TAG: ghcr.io/${{ github.repository_owner }}/end-to-end-mlops-food-delivery-time-prediction-project:latest
+  IMAGE_TAG: ghcr.io/faheemkhan0817/end-to-end-mlops-food-delivery-time-prediction-project:latest
 
 jobs:
   build-and-deploy:
