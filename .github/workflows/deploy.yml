@@ -1,0 +1,73 @@
+name: Deploy to AWS Elastic Beanstalk
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v1
+
+      - name: Log in to GitHub Container Registry
+        uses: docker/login-action@v1
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Build Docker image
+        uses: docker/build-push-action@v2
+        with:
+          context: .
+          load: true  # Load image for testing
+          tags: ghcr.io/${{ github.repository }}:latest
+
+      - name: Run tests
+        run: |
+          docker run --rm ghcr.io/${{ github.repository }}:latest python -m unittest tests/test_routes.py -v
+
+      - name: Push Docker image
+        uses: docker/build-push-action@v2
+        with:
+          context: .
+          push: true
+          tags: ghcr.io/${{ github.repository }}:latest
+
+      - name: Generate Dockerrun.aws.json
+        run: |
+          echo '{
+            "AWSEBDockerrunVersion": "1",
+            "Image": {
+              "Name": "ghcr.io/${{ github.repository }}:latest",
+              "Update": "true"
+            },
+            "Ports": [
+              {
+                "ContainerPort": 5000
+              }
+            ]
+          }' > Dockerrun.aws.json
+
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: us-east-1  # Adjust to your preferred region
+
+      - name: Upload Dockerrun.aws.json to S3
+        run: aws s3 cp Dockerrun.aws.json s3://food-delivery-deploy/Dockerrun.aws.json
+
+      - name: Create application version
+        run: |
+          aws elasticbeanstalk create-application-version --application-name food-delivery-prediction --version-label ${{ github.sha }} --source-bundle S3Bucket="food-delivery-deploy",S3Key="Dockerrun.aws.json"
+
+      - name: Update environment
+        run: aws elasticbeanstalk update-environment --environment-name food-delivery-prod --version-label ${{ github.sha }}
