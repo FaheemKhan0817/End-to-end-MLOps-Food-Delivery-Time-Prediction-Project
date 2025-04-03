@@ -5,47 +5,50 @@ on:
     branches:
       - main
 
+env:
+  IMAGE_TAG: ghcr.io/${{ github.repository_owner }}/end-to-end-mlops-food-delivery-time-prediction-project:latest
+
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
 
       - name: Set up Docker Buildx
-        uses: docker/setup-buildx-action@v1
+        uses: docker/setup-buildx-action@v2
 
       - name: Log in to GitHub Container Registry
-        uses: docker/login-action@v1
+        uses: docker/login-action@v2
         with:
           registry: ghcr.io
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Build Docker image
-        uses: docker/build-push-action@v2
+      - name: Build Docker image for testing
+        uses: docker/build-push-action@v4
         with:
           context: .
-          load: true  # Load image for testing
-          tags: ghcr.io/${{ github.repository }}:latest
+          load: true  # Load image locally for testing
+          tags: ${{ env.IMAGE_TAG }}
 
       - name: Run tests
         run: |
-          docker run --rm ghcr.io/${{ github.repository }}:latest python -m unittest tests/test_routes.py -v
+          docker run --rm ${{ env.IMAGE_TAG }} python -m unittest tests/test_routes.py -v
 
       - name: Push Docker image
-        uses: docker/build-push-action@v2
+        uses: docker/build-push-action@v4
         with:
           context: .
           push: true
-          tags: ghcr.io/${{ github.repository }}:latest
+          tags: ${{ env.IMAGE_TAG }}
 
       - name: Generate Dockerrun.aws.json
         run: |
           echo '{
             "AWSEBDockerrunVersion": "1",
             "Image": {
-              "Name": "ghcr.io/${{ github.repository }}:latest",
+              "Name": "${{ env.IMAGE_TAG }}",
               "Update": "true"
             },
             "Ports": [
@@ -56,11 +59,11 @@ jobs:
           }' > Dockerrun.aws.json
 
       - name: Configure AWS credentials
-        uses: aws-actions/configure-aws-credentials@v1
+        uses: aws-actions/configure-aws-credentials@v2
         with:
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          aws-region: us-east-1  # Adjust to your preferred region
+          aws-region: us-east-1  
 
       - name: Upload Dockerrun.aws.json to S3
         run: aws s3 cp Dockerrun.aws.json s3://food-delivery-deploy/Dockerrun.aws.json
