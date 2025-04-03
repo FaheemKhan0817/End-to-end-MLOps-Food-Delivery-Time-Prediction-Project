@@ -25,14 +25,14 @@ body {
 
 h1 {
     font-size: 2.5rem;
-    color: #333;
+    color: #2c3e50;
     text-align: center;
     margin-bottom: 10px;
 }
 
 p {
     text-align: center;
-    color: #666;
+    color: #7f8c8d;
     margin-bottom: 20px;
 }
 
@@ -50,59 +50,87 @@ p {
 
 label {
     font-size: 0.9rem;
-    color: #444;
+    color: #34495e;
     margin-bottom: 5px;
 }
 
 input, select {
-    padding: 10px;
-    border: 1px solid #ddd;
-    border-radius: 5px;
+    padding: 12px;
+    border: 1px solid #ecf0f1;
+    border-radius: 8px;
     font-size: 1rem;
-    transition: border-color 0.3s;
+    background: #f9fbfc;
+    transition: border-color 0.3s, box-shadow 0.3s;
 }
 
 input:focus, select:focus {
     outline: none;
-    border-color: #007bff;
+    border-color: #3498db;
+    box-shadow: 0 0 5px rgba(52, 152, 219, 0.3);
 }
 
 button {
     display: block;
     width: 100%;
-    padding: 12px;
-    background: #007bff;
+    padding: 14px;
+    background: #3498db;
     color: #fff;
     border: none;
-    border-radius: 5px;
-    font-size: 1.1rem;
+    border-radius: 8px;
+    font-size: 1.2rem;
+    font-weight: 600;
     cursor: pointer;
-    transition: background 0.3s;
+    transition: background 0.3s, transform 0.2s;
 }
 
 button:hover {
-    background: #0056b3;
+    background: #2980b9;
+    transform: translateY(-2px);
 }
 
 .result {
     text-align: center;
-    font-size: 1.2rem;
-    color: #333;
     margin-top: 20px;
-    padding: 15px;
-    border-radius: 5px;
-    background: #f8f9fa;
+    padding: 20px;
+    border-radius: 10px;
+    background: #ecf0f1;
     display: none;
+    flex-direction: column;
+    align-items: center;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.5s, transform 0.5s;
+}
+
+.result.show {
+    display: flex;
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.result-icon {
+    font-size: 3rem;
+    margin-bottom: 10px;
+}
+
+.result-text {
+    font-size: 1.8rem;
+    font-weight: 600;
+    color: #2c3e50;
+}
+
+.result.success .result-text {
+    color: #27ae60;
 }
 
 .result.success {
-    background: #d4edda;
-    color: #155724;
-    display: block;
+    background: #dff0d8;
 }
 
 .result.error {
-    background: #f8d7da;
-    color: #721c24;
-    display: block;
+    background: #f2dede;
+}
+
+.result.error .result-text {
+    color: #c0392b;
 }

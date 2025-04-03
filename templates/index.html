@@ -16,11 +16,12 @@
             <div class="form-grid">
                 <div class="form-group">
                     <label for="multiple_deliveries">Multiple Deliveries</label>
-                    <input type="number" id="multiple_deliveries" name="multiple_deliveries" step="1" min="0" required>
+                    <input type="number" id="multiple_deliveries" name="multiple_deliveries" step="1" min="0" placeholder="e.g., 1" required>
                 </div>
                 <div class="form-group">
                     <label for="Road_traffic_density">Road Traffic Density</label>
                     <select id="Road_traffic_density" name="Road_traffic_density" required>
+                        <option value="" disabled selected>Select</option>
                         <option value="Low">Low</option>
                         <option value="Medium">Medium</option>
                         <option value="High">High</option>
@@ -30,6 +31,7 @@
                 <div class="form-group">
                     <label for="Vehicle_condition">Vehicle Condition</label>
                     <select id="Vehicle_condition" name="Vehicle_condition" required>
+                        <option value="" disabled selected>Select</option>
                         <option value="Poor">Poor</option>
                         <option value="Good">Good</option>
                         <option value="Excellent">Excellent</option>
@@ -37,15 +39,16 @@
                 </div>
                 <div class="form-group">
                     <label for="Delivery_person_Ratings">Delivery Person Ratings (1-5)</label>
-                    <input type="number" id="Delivery_person_Ratings" name="Delivery_person_Ratings" step="0.1" min="1" max="5" required>
+                    <input type="number" id="Delivery_person_Ratings" name="Delivery_person_Ratings" step="0.1" min="1" max="5" placeholder="e.g., 4.5" required>
                 </div>
                 <div class="form-group">
                     <label for="distance_deliveries">Distance × Deliveries</label>
-                    <input type="number" id="distance_deliveries" name="distance_deliveries" step="0.1" required>
+                    <input type="number" id="distance_deliveries" name="distance_deliveries" step="0.1" placeholder="e.g., 10.5" required>
                 </div>
                 <div class="form-group">
                     <label for="Weather_conditions">Weather Conditions</label>
                     <select id="Weather_conditions" name="Weather_conditions" required>
+                        <option value="" disabled selected>Select</option>
                         <option value="Sunny">Sunny</option>
                         <option value="Cloudy">Cloudy</option>
                         <option value="Fog">Fog</option>
@@ -57,29 +60,31 @@
                 <div class="form-group">
                     <label for="Festival">Festival</label>
                     <select id="Festival" name="Festival" required>
+                        <option value="" disabled selected>Select</option>
                         <option value="No">No</option>
                         <option value="Yes">Yes</option>
                     </select>
                 </div>
                 <div class="form-group">
                     <label for="distance_traffic">Distance × Traffic</label>
-                    <input type="number" id="distance_traffic" name="distance_traffic" step="0.1" required>
+                    <input type="number" id="distance_traffic" name="distance_traffic" step="0.1" placeholder="e.g., 15.2" required>
                 </div>
                 <div class="form-group">
                     <label for="distance">Distance (km)</label>
-                    <input type="number" id="distance" name="distance" step="0.1" min="0" required>
+                    <input type="number" id="distance" name="distance" step="0.1" min="0" placeholder="e.g., 5.0" required>
                 </div>
                 <div class="form-group">
                     <label for="Delivery_person_Age">Delivery Person Age</label>
-                    <input type="number" id="Delivery_person_Age" name="Delivery_person_Age" step="1" min="18" max="60" required>
+                    <input type="number" id="Delivery_person_Age" name="Delivery_person_Age" step="1" min="18" max="60" placeholder="e.g., 30" required>
                 </div>
                 <div class="form-group">
                     <label for="prep_traffic">Prep Time × Traffic</label>
-                    <input type="number" id="prep_traffic" name="prep_traffic" step="0.1" required>
+                    <input type="number" id="prep_traffic" name="prep_traffic" step="0.1" placeholder="e.g., 12.0" required>
                 </div>
                 <div class="form-group">
                     <label for="City">City</label>
                     <select id="City" name="City" required>
+                        <option value="" disabled selected>Select</option>
                         <option value="Urban">Urban</option>
                         <option value="Semi-Urban">Semi-Urban</option>
                         <option value="Metropolitan">Metropolitan</option>
@@ -89,7 +94,10 @@
             <button type="submit">Predict Delivery Time</button>
         </form>
 
-        <div id="result" class="result"></div>
+        <div id="result" class="result">
+            <div class="result-icon">🍔</div>
+            <div class="result-text"></div>
+        </div>
     </div>
 
     <script src="{{ url_for('static', filename='js/script.js') }}"></script>
