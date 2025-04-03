@@ -23,7 +23,7 @@ jobs:
         with:
           registry: ghcr.io
           username: ${{ github.actor }}
-          password: ${{ secrets.GITHUB_TOKEN }}
+          password: ${{ secrets.GHCR_PAT }}  # Use PAT stored as a secret
 
       - name: Build Docker image for testing
         uses: docker/build-push-action@v4
