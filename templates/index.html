@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Food Delivery Time Prediction</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <h1>Food Delivery Time Prediction</h1>
+        <p>Enter the details below to predict delivery time (in minutes).</p>
+        
+        <form id="prediction-form">
+            <div class="form-grid">
+                <div class="form-group">
+                    <label for="multiple_deliveries">Multiple Deliveries</label>
+                    <input type="number" id="multiple_deliveries" name="multiple_deliveries" step="1" min="0" required>
+                </div>
+                <div class="form-group">
+                    <label for="Road_traffic_density">Road Traffic Density</label>
+                    <select id="Road_traffic_density" name="Road_traffic_density" required>
+                        <option value="Low">Low</option>
+                        <option value="Medium">Medium</option>
+                        <option value="High">High</option>
+                        <option value="Jam">Jam</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="Vehicle_condition">Vehicle Condition</label>
+                    <select id="Vehicle_condition" name="Vehicle_condition" required>
+                        <option value="Poor">Poor</option>
+                        <option value="Good">Good</option>
+                        <option value="Excellent">Excellent</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="Delivery_person_Ratings">Delivery Person Ratings (1-5)</label>
+                    <input type="number" id="Delivery_person_Ratings" name="Delivery_person_Ratings" step="0.1" min="1" max="5" required>
+                </div>
+                <div class="form-group">
+                    <label for="distance_deliveries">Distance × Deliveries</label>
+                    <input type="number" id="distance_deliveries" name="distance_deliveries" step="0.1" required>
+                </div>
+                <div class="form-group">
+                    <label for="Weather_conditions">Weather Conditions</label>
+                    <select id="Weather_conditions" name="Weather_conditions" required>
+                        <option value="Sunny">Sunny</option>
+                        <option value="Cloudy">Cloudy</option>
+                        <option value="Fog">Fog</option>
+                        <option value="Sandstorms">Sandstorms</option>
+                        <option value="Stormy">Stormy</option>
+                        <option value="Windy">Windy</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="Festival">Festival</label>
+                    <select id="Festival" name="Festival" required>
+                        <option value="No">No</option>
+                        <option value="Yes">Yes</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="distance_traffic">Distance × Traffic</label>
+                    <input type="number" id="distance_traffic" name="distance_traffic" step="0.1" required>
+                </div>
+                <div class="form-group">
+                    <label for="distance">Distance (km)</label>
+                    <input type="number" id="distance" name="distance" step="0.1" min="0" required>
+                </div>
+                <div class="form-group">
+                    <label for="Delivery_person_Age">Delivery Person Age</label>
+                    <input type="number" id="Delivery_person_Age" name="Delivery_person_Age" step="1" min="18" max="60" required>
+                </div>
+                <div class="form-group">
+                    <label for="prep_traffic">Prep Time × Traffic</label>
+                    <input type="number" id="prep_traffic" name="prep_traffic" step="0.1" required>
+                </div>
+                <div class="form-group">
+                    <label for="City">City</label>
+                    <select id="City" name="City" required>
+                        <option value="Urban">Urban</option>
+                        <option value="Semi-Urban">Semi-Urban</option>
+                        <option value="Metropolitan">Metropolitan</option>
+                    </select>
+                </div>
+            </div>
+            <button type="submit">Predict Delivery Time</button>
+        </form>
+
+        <div id="result" class="result"></div>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</body>
+</html>
