@@ -4,14 +4,6 @@
 __pycache__/
 astro
 .venv
-airflow-webserver.pid
-webserver_config.py
-airflow.cfg
-airflow.db
 venv/
 logs/
-tests/
-plugins/
 Food_Delivery_Time_Prediction.egg-info/
-include/
-.astro/

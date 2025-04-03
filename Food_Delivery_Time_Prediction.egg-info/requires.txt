@@ -1,9 +1,0 @@
-pandas
-numpy
-setuptools
-scikit-learn
-kaggle
-redis
-geopy
-xgboost
-comet_ml

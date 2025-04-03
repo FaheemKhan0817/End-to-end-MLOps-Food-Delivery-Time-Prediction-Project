@@ -7,3 +7,4 @@ redis
 geopy
 xgboost
 comet_ml
+flask
