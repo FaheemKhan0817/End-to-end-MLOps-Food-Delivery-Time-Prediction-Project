@@ -8,3 +8,4 @@ geopy
 xgboost
 comet_ml
 flask
+alibi-detect

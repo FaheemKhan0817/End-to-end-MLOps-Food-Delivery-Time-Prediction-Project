@@ -30,7 +30,7 @@ class ModelTraining:
         self.experiment = Experiment(
             api_key=os.getenv("COMET_API_KEY"),
             project_name="food-delivery-time-prediction",
-            workspace="faheem-khan0817"  # Replace with your workspace
+            workspace="faheem-khan0817"  
         )
         logger.info("Model Training initialized with Comet ML...")
 
