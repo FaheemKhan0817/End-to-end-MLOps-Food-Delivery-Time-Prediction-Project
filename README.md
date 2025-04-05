@@ -2,7 +2,7 @@
 <h1 align="center">🚀 End-to-End MLOps Food Delivery Time Prediction Project 🍔📦</h1>
 
 <p align="center">
-  <img src="static/favicon.ico" width="80" alt="Project Logo"/>
+  <img src="static/website.jpg"  alt="Project Logo"/>
 </p>
 
 <p align="center">
