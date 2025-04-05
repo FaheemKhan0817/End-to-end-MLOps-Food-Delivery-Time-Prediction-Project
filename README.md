@@ -22,18 +22,45 @@ It is designed for **scalability, observability**, and **automation** using cutt
 
 ```
 End-to-end-MLOps-Food-Delivery-Time-Prediction-Project/
-├── .github/workflows/            # CI/CD pipeline definitions
-│   └── deploy.yml
-├── artifacts/models/             # Trained model and scaler
-├── config/                       # Configuration files
-├── logs/                         # Application and training logs
-├── notebooks/                    # EDA and experimentation
-├── pipeline/                     # Training pipeline scripts
-├── src/                          # Source code for API and utilities
-├── app.py                        # Flask API entrypoint
-├── Dockerfile                    # Docker image definition
-└── requirements.txt              # Project dependencies
+├── .github/                         # GitHub workflows for CI/CD
+│   └── workflows/
+│       └── deploy.yml              # CI/CD pipeline for AWS deployment
+├── artifacts/                       # Model and scaler artifacts
+│   ├── models/
+│   │   ├── model.pkl               # Trained XGBoost model
+│   │   └── scaler.pkl              # Fitted StandardScaler
+├── config/                          # Configuration files
+│   └── paths_config.py             # Path definitions
+├── Food_Delivery_Time_Prediction.egg-info/  # Python package metadata
+├── logs/                            # Log files from app and pipeline
+├── notebooks/                       # Exploratory data analysis notebooks
+├── pipeline/                        # Training pipeline scripts
+│   ├── __init__.py
+│   └── training_pipeline.py        # End-to-end training script
+├── src/                             # Source code
+│   ├── __pycache__/                # Compiled Python files
+│   ├── __init__.py
+│   ├── custom_exception.py         # Custom exception handling
+│   ├── data_ingestion.py           # Data loading logic
+│   ├── data_processing.py          # Data preprocessing logic
+│   ├── feature_store.py            # RedisFeatureStore for feature management
+│   ├── logger.py                   # Logging utility
+│   └── model_training.py           # Model training and evaluation
+├── static/                          # Static assets for Flask app
+│   └── favicon.ico                 # Browser favicon
+├── templates/                       # HTML templates for Flask
+│   └── index.html                  # Main webpage
+├── tests/                           # Unit tests
+├── .gitignore                       # Git ignore file
+├── app.py                           # Flask application with prediction and drift detection
+├── docker-compose.yml               # Docker Compose for local development
+├── Dockerfile                       # Docker configuration for app
+├── instruction.md                   # Additional project instructions
+├── requirements.txt                 # Python dependencies
+└── setup.py                         # Project setup script
 ```
+
+
 
 ---
 
