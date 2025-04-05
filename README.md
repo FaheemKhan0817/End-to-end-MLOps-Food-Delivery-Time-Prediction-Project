@@ -122,6 +122,12 @@ This project is licensed under the MIT License.
 
 ---
 
+## Contact
+
+- **Author**: Faheem Khan
+- **Email**: faheemthakur23@gmail.com
+- **GitHub**: https://github.com/FaheemKhan0817
+
 ## 🙌 Acknowledgements
 
 - Inspired by real-world food delivery use-cases
