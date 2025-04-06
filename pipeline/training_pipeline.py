@@ -14,7 +14,7 @@ if __name__ == "__main__":
     experiment = Experiment(
         api_key=os.getenv("COMET_API_KEY"),
         project_name="food-delivery-time-prediction",
-        workspace="faheem-khan0817"  # Replace with your workspace
+        workspace="faheemkhan0817"  # Replace with your workspace
     )
     experiment.set_name("Full_Training_Pipeline")  # Optional: custom name
 
